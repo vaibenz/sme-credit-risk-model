@@ -39,9 +39,10 @@ def cutoff_simulation(pd_scores, defaults, exposure, p: PricingAssumptions, cuto
     return pd.DataFrame(rows)
 
 
-def recommend_cutoff(sim: pd.DataFrame, max_loss_rate: float) -> pd.Series:
-    """Highest approval rate whose expected loss rate stays within risk appetite."""
-    within = sim[sim["expected_loss_rate"] <= max_loss_rate]
+def recommend_cutoff(sim: pd.DataFrame, max_loss_rate: float, max_pd: float = 1.0) -> pd.Series:
+    """Highest approval rate whose expected loss rate stays within risk appetite,
+    never approving beyond the PD ceiling of the last lending tier."""
+    within = sim[(sim["expected_loss_rate"] <= max_loss_rate) & (sim["pd_cutoff"] <= max_pd)]
     if within.empty:
         return sim.sort_values("approval_rate").iloc[0]
     return within.sort_values("approval_rate").iloc[-1]

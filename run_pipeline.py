@@ -95,7 +95,7 @@ def main():
 
     summary = tier_summary(scored, tiers)
     sim = cutoff_simulation(scored["pd"], scored["default"], scored["exposure"], cfg.pricing)
-    chosen = recommend_cutoff(sim, cfg.max_expected_loss_rate)
+    chosen = recommend_cutoff(sim, cfg.max_expected_loss_rate, max_pd=tiers[-2].max_pd)  # tier E is declined
 
     out = Path(args.out)
     out.mkdir(exist_ok=True)

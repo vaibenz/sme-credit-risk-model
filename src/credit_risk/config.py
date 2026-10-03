@@ -52,4 +52,4 @@ class Config:
     tiers: list = field(default_factory=lambda: list(DEFAULT_TIERS))
     test_size: float = 0.2
     valid_size: float = 0.2
-    max_expected_loss_rate: float = 0.05   # risk appetite used to pick the cut-off
+    max_expected_loss_rate: float = 0.03   # risk appetite: expected loss as a share of exposure

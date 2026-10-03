@@ -1,24 +1,24 @@
 # Results
 
-Data source: **synthetic (Home Credit schema)**, 30,000 applicants, default rate 10.6%, thin file share 39.8%.
+Data source: **Home Credit Default Risk**, 307,511 applicants, default rate 8.1%, thin file share 14.3%.
 
 ## Model performance (held-out test set)
 
 | Model | AUC | Gini | KS |
 |---|---|---|---|
-| Logistic regression | 0.720 | 0.440 | 0.328 |
-| LightGBM | 0.729 | 0.459 | 0.350 |
+| Logistic regression | 0.751 | 0.502 | 0.379 |
+| LightGBM | 0.771 | 0.542 | 0.409 |
 
 ## Risk tiers
 
 | tier   | pd_ceiling   |   limit_x_monthly_income |   max_tenure_months |   applicants | avg_pd   | observed_default_rate   | avg_apr   | share   |
 |:-------|:-------------|-------------------------:|--------------------:|-------------:|:---------|:------------------------|:----------|:--------|
-| A      | 5.7%         |                      3   |                  24 |         1780 | 4.8%     | 3.1%                    | 16.9%     | 29.7%   |
-| B      | 8.0%         |                      2   |                  18 |         1613 | 6.7%     | 6.6%                    | 18.6%     | 26.9%   |
-| C      | 11.8%        |                      1.5 |                  12 |         1133 | 9.5%     | 12.5%                   | 21.2%     | 18.9%   |
-| D      | 21.4%        |                      1   |                   6 |          887 | 15.9%    | 15.9%                   | 27.9%     | 14.8%   |
-| E      | 100.0%       |                      0   |                   0 |          587 | 33.0%    | 32.5%                   | nan       | 9.8%    |
+| A      | 3.0%         |                      3   |                  24 |        18502 | 1.9%     | 1.9%                    | 14.5%     | 30.1%   |
+| B      | 5.8%         |                      2   |                  18 |        15496 | 4.3%     | 4.2%                    | 16.5%     | 25.2%   |
+| C      | 10.2%        |                      1.5 |                  12 |        12331 | 7.7%     | 7.7%                    | 19.5%     | 20.0%   |
+| D      | 18.6%        |                      1   |                   6 |         9225 | 13.6%    | 13.7%                   | 25.4%     | 15.0%   |
+| E      | 100.0%       |                      0   |                   0 |         5949 | 28.8%    | 29.6%                   | nan       | 9.7%    |
 
 ## Recommended cut-off
 
-Approve applicants with PD at or below **17.1%**: approval rate **85.0%**, expected loss rate **4.96%**, realised loss rate 4.75%, bad rate 7.4%.
+Approve applicants with PD at or below **11.9%**: approval rate **80.0%**, expected loss rate **2.94%**, realised loss rate 2.91%, bad rate 4.6%.

@@ -10,12 +10,14 @@ from .config import ID
 SQL_DIR = Path(__file__).resolve().parents[2] / "sql"
 
 
-def run_sql(tables: dict[str, pd.DataFrame], sql_file: str) -> pd.DataFrame:
+def run_sql(source, sql_file: str) -> pd.DataFrame:
+    """Run a query from sql/ against either a SQLite file path or a dict of DataFrames."""
     query = (SQL_DIR / sql_file).read_text()
-    conn = sqlite3.connect(":memory:")
+    conn = sqlite3.connect(str(source) if not isinstance(source, dict) else ":memory:")
     try:
-        for name, df in tables.items():
-            df.to_sql(name, conn, index=False)
+        if isinstance(source, dict):
+            for name, df in source.items():
+                df.to_sql(name, conn, index=False)
         return pd.read_sql_query(query, conn)
     finally:
         conn.close()
@@ -41,8 +43,8 @@ def application_features(app: pd.DataFrame) -> pd.DataFrame:
 
 def build_feature_table(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
     base = application_features(tables["application"])
-    inst = run_sql({"installments": tables["installments"]}, "installments_features.sql")
-    bureau = run_sql({"bureau": tables["bureau"]}, "bureau_features.sql")
+    inst = run_sql(tables["db"], "installments_features.sql")
+    bureau = run_sql(tables["db"], "bureau_features.sql")
 
     df = base.merge(inst, on=ID, how="left").merge(bureau, on=ID, how="left")
     df["HAS_REPAYMENT_HISTORY"] = df["inst_count"].notna().astype(int)
