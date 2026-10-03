@@ -102,7 +102,7 @@ The Home Credit data covers consumer cash and revolving loans, not Indonesian MS
 
 ## Context
 
-Built as part of the NTU PEAK Leadership Programme 2026 (Monee Team 1), responding to the problem statement: *How can we better utilise technology to increase access to sustainable financing for SMEs in Southeast Asia, to foster financial inclusion and long-term economic resilience?* The companion app is [TemanUsaha](https://github.com/<your-username>/temanusaha-bookkeeping-app).
+Built as part of the NTU PEAK Leadership Programme 2026 (Monee Team 1), responding to the problem statement: *How can we better utilise technology to increase access to sustainable financing for SMEs in Southeast Asia, to foster financial inclusion and long-term economic resilience?* The companion app is [TemanUsaha](https://github.com/vaibenz/temanusaha-bookkeeping-app).
 
 ## License
 
