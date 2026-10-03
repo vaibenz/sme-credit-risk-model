@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "source": "synthetic (Home Credit schema)",
+    "applicants": 30000,
+    "default_rate": 0.10623333333333333,
+    "thin_file_share": 0.3980666666666667
+  },
+  "metrics": {
+    "Logistic regression": {
+      "AUC": 0.7198,
+      "Gini": 0.4396,
+      "KS": 0.3276
+    },
+    "LightGBM": {
+      "AUC": 0.7292,
+      "Gini": 0.4585,
+      "KS": 0.3499
+    }
+  }
+}
